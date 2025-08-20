@@ -26,6 +26,9 @@ use crate::H1_safe::{
 
 pub type ErfaResult<T> = Result<T, ()>;
 
+//----------------------------------------------------------------------
+// G30/s06.c
+//----------------------------------------------------------------------
 // Internal data for s06 series
 #[derive(Clone, Copy)]
 struct TERM {
@@ -463,6 +466,9 @@ pub fn eraS06_safe(date1: f64, date2: f64, x: f64, y: f64) -> ErfaResult<f64> {
     Ok(s)
 }
 
+//----------------------------------------------------------------------
+// G30/s06a.c
+//----------------------------------------------------------------------
 // CIO locator s, IAU 2006/2000A (auto X,Y).
 pub fn eraS06a_safe(date1: f64, date2: f64) -> ErfaResult<f64> {
     let rnpb = eraPnm06a_safe(date1, date2)?;
@@ -470,6 +476,9 @@ pub fn eraS06a_safe(date1: f64, date2: f64) -> ErfaResult<f64> {
     eraS06_safe(date1, date2, x, y)
 }
 
+//----------------------------------------------------------------------
+// G30/sepp.c
+//----------------------------------------------------------------------
 // Angular separation between two p-vectors.
 pub fn eraSepp_safe(a: &[f64; 3], b: &[f64; 3]) -> ErfaResult<f64> {
     let axb = eraPxp_safe(a, b)?;
@@ -483,6 +492,9 @@ pub fn eraSepp_safe(a: &[f64; 3], b: &[f64; 3]) -> ErfaResult<f64> {
     Ok(ang)
 }
 
+//----------------------------------------------------------------------
+// G30/seps.c
+//----------------------------------------------------------------------
 // Angular separation between two spherical positions.
 pub fn eraSeps_safe(al: f64, ap: f64, bl: f64, bp: f64) -> ErfaResult<f64> {
     let ac = eraS2c_safe(al, ap)?;
@@ -490,12 +502,18 @@ pub fn eraSeps_safe(al: f64, ap: f64, bl: f64, bp: f64) -> ErfaResult<f64> {
     eraSepp_safe(&ac, &bc)
 }
 
+//----------------------------------------------------------------------
+// G30/sp00.c
+//----------------------------------------------------------------------
 // TIO locator s′ (linear model).
 pub fn eraSp00_safe(date1: f64, date2: f64) -> ErfaResult<f64> {
     let t = ((date1 - ERFA_DJ00) + date2) / ERFA_DJC;
     Ok(-47e-6 * t * ERFA_DAS2R)
 }
 
+//----------------------------------------------------------------------
+// G30/starpm.c
+//----------------------------------------------------------------------
 // Propagate star catalog data for space motion.
 pub fn eraStarpm_safe(
     ra1: f64,
@@ -529,6 +547,9 @@ pub fn eraStarpm_safe(
     Ok(((ra2, dec2, pmr2, pmd2, px2, rv2), j))
 }
 
+//----------------------------------------------------------------------
+// G30/starpv.c
+//----------------------------------------------------------------------
 // Catalog data to position/velocity vector.
 pub fn eraStarpv_safe(
     ra: f64,
@@ -618,11 +639,17 @@ pub fn eraStarpv_safe(
     Ok((pv, warn))
 }
 
+//----------------------------------------------------------------------
+// G30/sxp.c
+//----------------------------------------------------------------------
 // Scalar × p-vector.
 pub fn eraSxp_safe(s: f64, p: &[f64; 3]) -> ErfaResult<[f64; 3]> {
     Ok([s * p[0], s * p[1], s * p[2]])
 }
 
+//----------------------------------------------------------------------
+// G30/sxpv.c
+//----------------------------------------------------------------------
 // Scalar × pv-vector.
 pub fn eraSxpv_safe(s: f64, pv: &[[f64; 3]; 2]) -> ErfaResult<[[f64; 3]; 2]> {
     eraS2xpv_safe(s, s, pv)
