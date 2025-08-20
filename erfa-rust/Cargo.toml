@@ -3,6 +3,13 @@ name = "erfa-rust"
 version = "0.1.0"
 edition = "2024"
 
+authors = ["simplespace-cat"]
+description = "Essential Routines for Fundamental Astronomy Rust"
+repository = "https://github.com/simplespace-cat/erfa-rust"
+license = "BSD-3-Clause"
+keywords = ["erfa", "astronomy", "sofa", "astrometry", "timekeeping"]
+categories = ["science", "aerospace", "astronomy"]
+readme = "README.md"
 
 [dependencies]
 libc = "0.2.174"
