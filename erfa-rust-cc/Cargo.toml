@@ -1,0 +1,15 @@
+[package]
+name = "erfa-rust-cc"
+version = "0.1.0"
+edition = "2021"
+
+authors = ["simplespace-cat"]
+description = "Essential Routines for Fundamental Astronomy; Rust, C-style API parity; raw pointers"
+repository = "https://github.com/simplespace-cat/erfa-rust"
+license = "BSD-3-Clause"
+keywords = ["erfa", "astronomy", "sofa", "astrometry", "timekeeping"]
+categories = ["science", "aerospace", "mathematics"]
+readme = "README.md"
+
+[dependencies]
+libc = "0.2.174"
